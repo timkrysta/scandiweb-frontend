@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import Footer from './Footer';
+
 
 function ProductAddPage() {
       
@@ -69,7 +71,8 @@ function ProductAddPage() {
           <div style={{ display: "flex" }}>
             <h1>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-              <button>CANCEL</button>
+              {/* <button>CANCEL</button> */}
+              <Link to="/product/list">CANCEL</Link>
               <button>SAVE</button>
             </div>
           </div>

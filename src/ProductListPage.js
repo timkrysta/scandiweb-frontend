@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from './Footer';
 
 function ProductListPage() {
@@ -55,7 +56,8 @@ function ProductListPage() {
           <div style={{ display: 'flex' }}>
             <h1>Product List</h1>
             <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
-              <button>ADD</button>
+              {/* <button>ADD</button> */}
+              <Link to="/product/add">ADD</Link>
               <button>MASS DELETE</button>
             </div>
           </div>

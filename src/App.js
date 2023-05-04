@@ -1,21 +1,21 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+
 import ProductListPage from './ProductListPage';
 import ProductAddPage from './ProductAddPage';
 
-function App() {
-  let content;
-  let isAddingProduct = false;
-
-  if (isAddingProduct) {
-    content = <ProductAddPage />;
-  } else {
-    content = <ProductListPage />;
-  }
-
+const App = () => {
   return (
-    <>
-      {content}
-    </>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/product/list" element={<ProductListPage />} />
+          <Route path="/product/add" element={<ProductAddPage />} />
+          <Route path="*" element={<Navigate to="/product/list" />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
