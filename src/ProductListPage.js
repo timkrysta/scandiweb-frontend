@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -23,42 +23,86 @@ function ProductListPage() {
   }, []);
 
   function ProductList() {
+    const [selectedProductIds, setSelectedProductIds] = useState([]);
+    const massDeleteApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/bulkDelete.php';
+
     return (
-      <form action="" id="" method="POST" style={{ display: "flex", flexWrap: "wrap", gap: ".5rem" }}>
-          {products.map(product => (
-            <Product product={product} />
-          ))}
-      </form>
+      <div className="container">
+        <form className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4" action={massDeleteApiEndpoint} id="massDeleteForm" method="POST">
+          {products.length > 0
+            ? products.map(product => <Product key={product.id} product={product} setSelectedProductIds={setSelectedProductIds} />)
+            : ''}
+        </form>
+      </div>
     )
   }
 
-  function Product({ product }) {
+  function Product({ product, setSelectedProductIds }) {
+    const handleCheckboxChange = (event) => {
+      const { value, checked } = event.target;
+
+      setSelectedProductIds((prevIds) => {
+        if (checked) {
+          return [...prevIds, value];
+        } else {
+          return prevIds.filter((id) => id !== value);
+        }
+      });
+    };
+
     return (
-      <label key={product.id} style={{ padding: ".25rem", border: "1px solid black", flexGrow: "1", }}>
-        <div>
-          <input type="checkbox" className="delete-checkbox" name="ids[]" value={product.id} />
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <div>{product.sku}</div>
-          <div>{product.name}</div>
-          <div>{product.price}</div>
-          <div>
-            {product.height} {product.width} {product.length}
+      <div className="col">
+        <label className="d-block h-100">
+          <div className="card h-100">
+            <div>
+              <input
+                type="checkbox"
+                className="delete-checkbox"
+                name="ids[]"
+                value={product.id}
+                onChange={handleCheckboxChange}
+              />
+            </div>
+            <div className="card-body">
+              <div style={{ textAlign: "center" }}>
+                <div>{product.sku}</div>
+                <div>{product.name}</div>
+                <div>{product.price}</div>
+                <div>
+                  {product.height} {product.width} {product.length}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </label>
+        </label>
+      </div>
     );
   }
 
+  const handleMassDelete = async () => {
+    const form = document.getElementById('massDeleteForm');
+  
+    try {
+      await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form)
+      });
+      window.location.reload(); // Reload the page after the request is sent
+    } catch (error) {
+      console.error('Error deleting products:', error);
+    }
+  };
+  
+
   return (
-    <>
+    <div >
       <header>
         <nav>
           <div style={{ display: 'flex' }}>
             <h1>Product List</h1>
             <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
-              <Link className="btn btn-primary" to="/product/add">ADD</Link>
-              <button className="btn btn-danger">MASS DELETE</button>
+              <Link className="btn btn-primary m-auto" to="/product/add">ADD</Link>
+              <button className="btn btn-danger m-auto" onClick={handleMassDelete}>MASS DELETE</button>
             </div>
           </div>
         </nav>
@@ -68,7 +112,7 @@ function ProductListPage() {
         <ProductList />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

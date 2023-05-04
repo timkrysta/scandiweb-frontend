@@ -65,15 +65,14 @@ function ProductAddPage() {
 
       
   return (
-    <>
+    <div className="">
       <header>
         <nav>
           <div style={{ display: "flex" }}>
             <h1>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-              {/* <button>CANCEL</button> */}
-              <Link className="btn btn-secondary" to="/product/list">CANCEL</Link>
-              <button className="btn btn-primary">SAVE</button>
+              <Link className="btn btn-secondary m-auto" to="/product/list">CANCEL</Link>
+              <button className="btn btn-primary m-auto">SAVE</button>
             </div>
           </div>
         </nav>
@@ -83,7 +82,7 @@ function ProductAddPage() {
         <ProductAddForm />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
