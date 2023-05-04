@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 function ProductAddPage() {
       
@@ -72,8 +72,8 @@ function ProductAddPage() {
             <h1>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
               {/* <button>CANCEL</button> */}
-              <Link to="/product/list">CANCEL</Link>
-              <button>SAVE</button>
+              <Link className="btn btn-secondary" to="/product/list">CANCEL</Link>
+              <button className="btn btn-primary">SAVE</button>
             </div>
           </div>
         </nav>

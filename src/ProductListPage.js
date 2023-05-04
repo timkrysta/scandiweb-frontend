@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function ProductListPage() {
   const [products, setProducts] = useState([]);
@@ -56,9 +57,8 @@ function ProductListPage() {
           <div style={{ display: 'flex' }}>
             <h1>Product List</h1>
             <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
-              {/* <button>ADD</button> */}
-              <Link to="/product/add">ADD</Link>
-              <button>MASS DELETE</button>
+              <Link className="btn btn-primary" to="/product/add">ADD</Link>
+              <button className="btn btn-danger">MASS DELETE</button>
             </div>
           </div>
         </nav>
