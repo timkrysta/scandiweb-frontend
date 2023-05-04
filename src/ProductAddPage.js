@@ -1,6 +1,67 @@
 import Footer from './Footer';
 
 function ProductAddPage() {
+      
+  function ProductAddForm() {
+    return (
+      <form action="">
+        <ProductAddFormBaseInputs />
+        <ProductAddFormAdditionalInputs />
+      </form>
+    );
+  }
+
+  function ProductAddFormBaseInputs() {
+    return (
+      <>
+        <div>
+          <label htmlFor="">SKU</label>
+          <input type="text" />
+        </div>
+        <div>
+          <label htmlFor="">Name</label>
+          <input type="text" />
+        </div>
+        <div>
+          <label htmlFor="">Price ($)</label>
+          <input type="text" />
+        </div>
+      </>
+    );
+  }
+
+  function ProductAddFormAdditionalInputs() {
+    return (
+      <>
+        <BookSpecificInputs />
+        <DvdSpecificInputs />
+        <FurnitureSpecificInputs />
+      </>
+    );
+  }
+
+  function BookSpecificInputs() {
+    return (
+      <>
+      </>
+    );
+  }
+
+  function DvdSpecificInputs() {
+    return (
+      <>
+      </>
+    );
+  }
+
+  function FurnitureSpecificInputs() {
+    return (
+      <>
+      </>
+    );
+  }
+
+      
   return (
     <>
       <header>
@@ -16,20 +77,7 @@ function ProductAddPage() {
         <hr />
       </header>
       <main>
-        <form action="">
-          <div>
-            <label htmlFor="">SKU</label>
-            <input type="text" />
-          </div>
-          <div>
-            <label htmlFor="">Name</label>
-            <input type="text" />
-          </div>
-          <div>
-            <label htmlFor="">Price ($)</label>
-            <input type="text" />
-          </div>
-        </form>
+        <ProductAddForm />
       </main>
       <Footer />
     </>

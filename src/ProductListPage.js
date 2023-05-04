@@ -20,11 +20,21 @@ function ProductListPage() {
     fetchProducts();
   }, []);
 
+  function ProductList() {
+    return (
+      <form action="" id="" method="POST" style={{ display: "flex", flexWrap: "wrap", gap: ".5rem" }}>
+          {products.map(product => (
+            <Product product={product} />
+          ))}
+      </form>
+    )
+  }
+
   function Product({ product }) {
     return (
       <label key={product.id} style={{ padding: ".25rem", border: "1px solid black", flexGrow: "1", }}>
         <div>
-          <input type="checkbox" name="ids[]" value={product.id} />
+          <input type="checkbox" className="delete-checkbox" name="ids[]" value={product.id} />
         </div>
         <div style={{ textAlign: "center" }}>
           <div>{product.sku}</div>
@@ -53,11 +63,7 @@ function ProductListPage() {
         <hr />
       </header>
       <main>
-        <form action="" id="" method="POST" style={{ display: "flex", flexWrap: "wrap", gap: ".5rem" }}>
-          {products.map(product => (
-            <Product product={product} />
-          ))}
-        </form>
+        <ProductList />
       </main>
       <Footer />
     </>
