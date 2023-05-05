@@ -23,13 +23,12 @@ function ProductListPage() {
   }, []);
 
   function ProductList() {
-    const [selectedProductIds, setSelectedProductIds] = useState([]);
 
     return (
       <div>
         <form className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4" action={API_ENDPOINTS.product.bulkDelete} id="massDeleteForm" method="POST">
           {products.length > 0
-            ? products.map(product => <Product key={product.id} product={product} setSelectedProductIds={setSelectedProductIds} />)
+            ? products.map(product => <Product key={product.id} product={product} />)
             : ''}
         </form>
       </div>
@@ -37,17 +36,6 @@ function ProductListPage() {
   }
 
   function Product({ product, setSelectedProductIds }) {
-    const handleCheckboxChange = (event) => {
-      const { value, checked } = event.target;
-
-      setSelectedProductIds((prevIds) => {
-        if (checked) {
-          return [...prevIds, value];
-        } else {
-          return prevIds.filter((id) => id !== value);
-        }
-      });
-    };
 
     return (
       <div className="col">
@@ -60,7 +48,6 @@ function ProductListPage() {
                   type="checkbox" 
                   name="ids[]"
                   value={product.id}
-                  onChange={handleCheckboxChange}
                 />
               </div>
             </div>
@@ -88,7 +75,7 @@ function ProductListPage() {
         method: form.method,
         body: new FormData(form)
       });
-      window.location.reload(); // Reload the page after the request is sent
+      window.location.reload();
     } catch (error) {
       console.error('Error deleting products:', error);
     }
