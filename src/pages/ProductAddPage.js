@@ -19,14 +19,21 @@ function ProductAddPage() {
     return html;
   };
 
-  const showError = (input, message) => { // TODO(tim): throw exception if input does not exist or if small.feedback does not exist
-    const formField = input.parentElement;
-    formField.classList.remove('is-valid');
-    formField.classList.add('is-invalid');
-    const error = formField.parentElement.querySelector('.validation-message');
-    error.style.color = '#fd5c70';
-    const feedback = Array.isArray(message) ? createItemList(message) : message;
-    error.innerHTML = feedback;
+  const showInputErrors = (input, errors) => {
+    const inputWrapper = input.parentElement;
+    inputWrapper.classList.remove('is-valid');
+    inputWrapper.classList.add('is-invalid');
+    const validationMessage = inputWrapper.parentElement.querySelector('.validation-message');
+    validationMessage.innerHTML = createItemList(errors)
+  };
+
+  const showFormErrors = (formErorrs) => {
+    for (let inputName in formErorrs) {
+      if (formErorrs.hasOwnProperty(inputName)) {
+        const input = document.querySelector(`[name="${inputName}"]`);
+        showInputErrors(input, formErorrs[inputName]);
+      }
+    }
   };
 
   const clearValidationMessages = () => {
@@ -43,19 +50,15 @@ function ProductAddPage() {
         method: form.method,
         body: new FormData(form)
       });
-      const data = await response.json();
+
       if (response.status === 200) {
         window.location = '/product/list';
+        return;
       }
-      else {
-        clearValidationMessages();
-        const errors = data.error;
-        for (let key in errors) {
-          if (errors.hasOwnProperty(key)) {
-            showError(document.getElementById(key), errors[key]);
-          }
-        }
-      }
+      
+      clearValidationMessages();
+      const data = await response.json();
+      showFormErrors(data.error);
     } catch (error) {}
   };
 
