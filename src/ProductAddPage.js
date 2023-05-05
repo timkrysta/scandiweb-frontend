@@ -30,6 +30,13 @@ const showError = (input, message) => { // TODO(tim): throw exception if input d
   error.innerHTML = feedback;
 };
 
+const clearAllErrorMessages = () => {
+  const errorPlaceholders = document.querySelectorAll('small.feedback');
+  errorPlaceholders.forEach(element => {
+    element.innerHTML = '';
+  });
+};
+
 function ProductAddForm({ productType, handleProductTypeChange }) {
   const addProductApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/saveApi.php';
   return (
@@ -175,6 +182,7 @@ function ProductAddPage() {
         window.location = '/product/list';
       }
       else if (data.message == 'Validation Failed') {
+        clearAllErrorMessages();
         const errors = data.error;
         for (let key in errors) {
           if (errors.hasOwnProperty(key)) {
