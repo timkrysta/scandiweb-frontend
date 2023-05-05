@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 function ProductAddPage() {
 
   const handleAddProduct = async () => {
-    const form = document.getElementById('addProductForm');
+    const form = document.getElementById('product_form');
   
     try {
       const response = await fetch(form.action, {
@@ -26,7 +26,7 @@ function ProductAddPage() {
   function ProductAddForm() {
     const addProductApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/saveApi.php';
     return (
-      <form action={addProductApiEndpoint} method="POST" id="addProductForm">
+      <form action={addProductApiEndpoint} method="POST" id="product_form">
         <ProductAddFormBaseInputs />
         <ProductAddFormAdditionalInputs />
       </form>
@@ -39,24 +39,25 @@ function ProductAddPage() {
         <div className="mb-3 row">
           <label className="col-sm-2 col-form-label">SKU</label>
           <div className="col-sm-10">
-            <input type="text" className="form-control" name="sku"/>
+            <input type="text" className="form-control" id="sku" name="sku"/>
           </div>
         </div>
         <div className="mb-3 row">
           <label className="col-sm-2 col-form-label">Name</label>
           <div className="col-sm-10">
-            <input type="text" className="form-control" name="name"/>
+            <input type="text" className="form-control" id="name" name="name"/>
           </div>
         </div>
         <div className="mb-3 row">
           <label className="col-sm-2 col-form-label">Price ($)</label>
           <div className="col-sm-10">
-            <input type="number" className="form-control" name="price"/>
+            <input type="number" /* step="0.01" */ className="form-control" id="price" name="price"/>
           </div>
         </div>
         <div className="mb-3 row">
           <label htmlFor="productType">Product Type</label>
           <select id="productType" name="productType" className="form-select">
+            <option value="dvd">DVD</option>
             <option value="dvd">DVD</option>
             <option value="book">Book</option>
             <option value="furniture">Furniture</option>
@@ -84,10 +85,10 @@ function ProductAddPage() {
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label">Weight (KG)</label>
             <div className="col-sm-10">
-              <input type="number" className="form-control" name="weight"/>
+              <input type="number" className="form-control" id="weight" name="weight"/>
             </div>
           </div>
-          <p>Please provide a weight in kilograms (KG).</p>
+          <p>Please, provide the weight in kilograms (KG).</p>
         </div>
       </>
     );
@@ -101,10 +102,10 @@ function ProductAddPage() {
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label">Size (MB)</label>
             <div className="col-sm-10">
-              <input type="number" className="form-control" name="size"/>
+              <input type="number" className="form-control" id="size" name="size"/>
             </div>
           </div>
-          <p>Please provide a size in megabyte (MB).</p>
+          <p>Please, provide the size in megabytes (MB).</p>
         </div>
       </>
     );
@@ -117,22 +118,22 @@ function ProductAddPage() {
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label">Height (CM)</label>
             <div className="col-sm-10">
-              <input type="number" className="form-control" name="height"/>
+              <input type="number" className="form-control" id="height" name="height"/>
             </div>
           </div>
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label">Width (CM)</label>
             <div className="col-sm-10">
-              <input type="number" className="form-control" name="width"/>
+              <input type="number" className="form-control" id="width" name="width"/>
             </div>
           </div>
           <div className="mb-3 row">
             <label className="col-sm-2 col-form-label">Length (CM)</label>
             <div className="col-sm-10">
-              <input type="number" className="form-control" name="length"/>
+              <input type="number" className="form-control" id="length" name="length"/>
             </div>
           </div>
-          <p>Please provide dimensions in HxWxL (height/width/length) format.</p>
+          <p>Please, provide dimensions in HxWxL (height/width/length) format.</p>
         </div>
       </>
     );
@@ -140,20 +141,20 @@ function ProductAddPage() {
 
 
   return (
-    <div className="">
-      <header>
+    <div>
+      <header className="container">
         <nav>
           <div style={{ display: "flex" }}>
             <h1>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-              <Link className="btn btn-secondary m-auto" to="/product/list">CANCEL</Link>
-              <button className="btn btn-primary m-auto" onClick={handleAddProduct}>SAVE</button>
+              <button className="btn btn-primary m-auto" onClick={handleAddProduct}>Save</button>
+              <Link className="btn btn-secondary m-auto" to="/product/list">Cancel</Link>
             </div>
           </div>
         </nav>
         <hr />
       </header>
-      <main>
+      <main className="container">
         <ProductAddForm />
       </main>
       <Footer />
