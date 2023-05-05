@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function ProductAddPage() {
+  const [productType, setProductType] = useState('');
 
   const handleAddProduct = async () => {
     const form = document.getElementById('product_form');
@@ -21,7 +23,10 @@ function ProductAddPage() {
       console.error('Error deleting products:', error);
     }
   };
-  
+
+  const handleProductTypeChange = (event) => {
+    setProductType(event.target.value);
+  }
 
   function ProductAddForm() {
     const addProductApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/saveApi.php';
@@ -29,7 +34,7 @@ function ProductAddPage() {
       <form action={addProductApiEndpoint} method="POST" id="product_form">
         <div className="row">
           <div className="col-12 col-md-6 col-xl-4">
-            <ProductAddFormBaseInputs />
+            <ProductAddFormBaseInputs handleProductTypeChange={handleProductTypeChange} />
             <ProductAddFormAdditionalInputs />
           </div>
         </div>
@@ -37,7 +42,7 @@ function ProductAddPage() {
     );
   }
 
-  function ProductAddFormBaseInputs() {
+  function ProductAddFormBaseInputs({ handleProductTypeChange }) {
     return (
       <>
         <div className="mb-3 row">
@@ -61,11 +66,11 @@ function ProductAddPage() {
         <div className="mb-3 row">
           <label className="col-sm-4 col-form-label" htmlFor="productType">Type Switcher</label>
           <div className="col-sm-8">
-            <select id="productType" name="productType" className="form-select">
-              <option value="">Type Switcher</option>
-              <option value="dvd">DVD</option>
-              <option value="book">Book</option>
-              <option value="furniture">Furniture</option>
+            <select id="productType" name="productType" className="form-select" onChange={handleProductTypeChange}>
+              <option value=""          selected={productType === ''}         >Type Switcher</option>
+              <option value="dvd"       selected={productType === 'dvd'}      >DVD</option>
+              <option value="book"      selected={productType === 'book'}     >Book</option>
+              <option value="furniture" selected={productType === 'furniture'}>Furniture</option>
             </select>
           </div>
         </div>
@@ -76,9 +81,9 @@ function ProductAddPage() {
   function ProductAddFormAdditionalInputs() {
     return (
       <>
-        <BookSpecificInputs />
-        <DvdSpecificInputs />
-        <FurnitureSpecificInputs />
+        {productType === 'book'      && <BookSpecificInputs />}
+        {productType === 'dvd'       && <DvdSpecificInputs />}
+        {productType === 'furniture' && <FurnitureSpecificInputs />}
       </>
     );
   }
