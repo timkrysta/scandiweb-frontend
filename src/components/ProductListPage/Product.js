@@ -1,4 +1,4 @@
-const Product = ({ product }) => (
+const Product = ({ data }) => (
   <div className="col">
     <label style={{ display: "block", height: "100%" }}>
       <div className="card" style={{ padding: ".5rem", height: "100%" }}>
@@ -8,17 +8,17 @@ const Product = ({ product }) => (
               className="delete-checkbox form-check-input"
               type="checkbox"
               name="ids[]"
-              value={product.id}
+              value={data.id}
             />
           </div>
         </div>
         <div className="card-body" style={{ userSelect: "none" }}>
           <div style={{ textAlign: "center" }}>
-            <div>{product.sku}</div>
-            <div>{product.name}</div>
-            <div>{product.price}</div>
+            <div>{data.sku}</div>
+            <div>{data.name}</div>
+            <div>{data.price}</div>
             <div>
-              {product.height} {product.width} {product.length}
+              {data.height} {data.width} {data.length}
             </div>
           </div>
         </div>

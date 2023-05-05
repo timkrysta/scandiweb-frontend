@@ -41,7 +41,6 @@ function ProductAddPage() {
     validationMessages.forEach((message) => (message.innerHTML = ''));
   };
 
-
   const handleProductFormSubmit = async () => {
     const form = document.getElementById('product_form');
 
@@ -55,11 +54,11 @@ function ProductAddPage() {
         window.location = '/product/list';
         return;
       }
-      
+
       clearValidationMessages();
       const data = await response.json();
       showFormErrors(data.error);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleProductTypeChange = (event) => {
@@ -68,8 +67,8 @@ function ProductAddPage() {
 
   return (
     <div>
-      <Header 
-        heading="Product Add" 
+      <Header
+        heading="Product Add"
         navigation={<>
           <button className="btn-save" onClick={handleProductFormSubmit}>Save</button>
           <Link className="btn-cancel" to="/product/list">Cancel</Link>

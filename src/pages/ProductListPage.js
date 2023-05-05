@@ -29,17 +29,19 @@ function ProductListPage() {
     const form = document.getElementById('massDeleteForm');
 
     try {
-      await fetch(form.action, {
+      const response = await fetch(form.action, {
         method: form.method,
         body: new FormData(form),
       });
-      window.location.reload();
-    } catch (error) {}
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) { }
   };
 
   return (
     <div>
-      <Header 
+      <Header
         heading="Product List"
         navigation={<>
           <Link to="/product/add" className="btn-add">ADD</Link>
@@ -54,13 +56,10 @@ function ProductListPage() {
             id="massDeleteForm"
             method="POST"
           >
-            {products.length > 0 ? (
-              products.map((product) => (
-                <Product key={product.id} product={product} />
-              ))
-            ) : (
-              <p>No products found.</p>
-            )}
+            {products.length > 0
+              ? (products.map((product) => (<Product key={product.id} data={product} />)))
+              : (<p>No products found.</p>)
+            }
           </form>
         </div>
       </main>
