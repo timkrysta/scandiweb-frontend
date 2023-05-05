@@ -27,8 +27,12 @@ function ProductAddPage() {
     const addProductApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/saveApi.php';
     return (
       <form action={addProductApiEndpoint} method="POST" id="product_form">
-        <ProductAddFormBaseInputs />
-        <ProductAddFormAdditionalInputs />
+        <div className="row">
+          <div className="col-12 col-md-6 col-xl-4">
+            <ProductAddFormBaseInputs />
+            <ProductAddFormAdditionalInputs />
+          </div>
+        </div>
       </form>
     );
   }
@@ -37,31 +41,33 @@ function ProductAddPage() {
     return (
       <>
         <div className="mb-3 row">
-          <label className="col-sm-2 col-form-label">SKU</label>
-          <div className="col-sm-10">
+          <label className="col-sm-4 col-form-label">SKU</label>
+          <div className="col-sm-8">
             <input type="text" className="form-control" id="sku" name="sku"/>
           </div>
         </div>
         <div className="mb-3 row">
-          <label className="col-sm-2 col-form-label">Name</label>
-          <div className="col-sm-10">
+          <label className="col-sm-4 col-form-label">Name</label>
+          <div className="col-sm-8">
             <input type="text" className="form-control" id="name" name="name"/>
           </div>
         </div>
         <div className="mb-3 row">
-          <label className="col-sm-2 col-form-label">Price ($)</label>
-          <div className="col-sm-10">
+          <label className="col-sm-4 col-form-label">Price ($)</label>
+          <div className="col-sm-8">
             <input type="number" /* step="0.01" */ className="form-control" id="price" name="price"/>
           </div>
         </div>
         <div className="mb-3 row">
-          <label htmlFor="productType">Product Type</label>
-          <select id="productType" name="productType" className="form-select">
-            <option value="dvd">DVD</option>
-            <option value="dvd">DVD</option>
-            <option value="book">Book</option>
-            <option value="furniture">Furniture</option>
-          </select>
+          <label className="col-sm-4 col-form-label" htmlFor="productType">Type Switcher</label>
+          <div className="col-sm-8">
+            <select id="productType" name="productType" className="form-select">
+              <option value="">Type Switcher</option>
+              <option value="dvd">DVD</option>
+              <option value="book">Book</option>
+              <option value="furniture">Furniture</option>
+            </select>
+          </div>
         </div>
       </>
     );
@@ -80,11 +86,10 @@ function ProductAddPage() {
   function BookSpecificInputs() {
     return (
       <>
-
         <div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Weight (KG)</label>
-            <div className="col-sm-10">
+            <label className="col-sm-4 col-form-label">Weight (KG)</label>
+            <div className="col-sm-8">
               <input type="number" className="form-control" id="weight" name="weight"/>
             </div>
           </div>
@@ -97,11 +102,10 @@ function ProductAddPage() {
   function DvdSpecificInputs() {
     return (
       <>
-
         <div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Size (MB)</label>
-            <div className="col-sm-10">
+            <label className="col-sm-4 col-form-label">Size (MB)</label>
+            <div className="col-sm-8">
               <input type="number" className="form-control" id="size" name="size"/>
             </div>
           </div>
@@ -116,20 +120,20 @@ function ProductAddPage() {
       <>
         <div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Height (CM)</label>
-            <div className="col-sm-10">
+            <label className="col-sm-4 col-form-label">Height (CM)</label>
+            <div className="col-sm-8">
               <input type="number" className="form-control" id="height" name="height"/>
             </div>
           </div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Width (CM)</label>
-            <div className="col-sm-10">
+            <label className="col-sm-4 col-form-label">Width (CM)</label>
+            <div className="col-sm-8">
               <input type="number" className="form-control" id="width" name="width"/>
             </div>
           </div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Length (CM)</label>
-            <div className="col-sm-10">
+            <label className="col-sm-4 col-form-label">Length (CM)</label>
+            <div className="col-sm-8">
               <input type="number" className="form-control" id="length" name="length"/>
             </div>
           </div>
