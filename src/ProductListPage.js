@@ -55,9 +55,9 @@ function ProductListPage() {
         <label className="d-block h-100">
           <div className="card h-100 p-2">
             <div>
-              <div class="form-check">
+              <div className="form-check">
                 <input 
-                  class="form-check-input delete-checkbox" 
+                  className="form-check-input delete-checkbox" 
                   type="checkbox" 
                   name="ids[]"
                   value={product.id}
