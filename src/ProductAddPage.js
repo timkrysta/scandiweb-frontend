@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-import 'bootstrap/dist/css/bootstrap.css';
+import './styles/style.scss';
 import API_ENDPOINTS from './config';
 
 function createItemList(items) {
@@ -54,28 +54,28 @@ function ProductAddForm({ productType, handleProductTypeChange }) {
 function ProductAddFormBaseInputs({ productType, handleProductTypeChange }) {
   return (
     <>
-      <div className="mb-3 row">
+      <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="sku">SKU</label>
         <div className="col-sm-8">
           <input type="text" className="form-control" id="sku" name="sku" required />
           <small className="feedback"></small>
         </div>
       </div>
-      <div className="mb-3 row">
+      <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="name">Name</label>
         <div className="col-sm-8">
           <input type="text" className="form-control" id="name" name="name" required />
           <small className="feedback"></small>
         </div>
       </div>
-      <div className="mb-3 row">
+      <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="price">Price ($)</label>
         <div className="col-sm-8">
           <input type="number" /* step="0.01" */ className="form-control" id="price" name="price" required />
           <small className="feedback"></small>
         </div>
       </div>
-      <div className="mb-3 row">
+      <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="productType">Type Switcher</label>
         <div className="col-sm-8">
           <select id="productType" name="productType" className="form-select" value={productType} onChange={handleProductTypeChange} required>
@@ -105,7 +105,7 @@ function BookSpecificInputs() {
   return (
     <>
       <div>
-        <div className="mb-3 row">
+        <div className="row mb-3">
           <label className="col-sm-4 col-form-label" htmlFor="weight">Weight (KG)</label>
           <div className="col-sm-8">
             <input type="number" className="form-control" id="weight" name="weight" required />
@@ -122,7 +122,7 @@ function DvdSpecificInputs() {
   return (
     <>
       <div>
-        <div className="mb-3 row">
+        <div className="row mb-3">
           <label className="col-sm-4 col-form-label" htmlFor="size">Size (MB)</label>
           <div className="col-sm-8">
             <input type="number" className="form-control" id="size" name="size" required />
@@ -139,21 +139,21 @@ function FurnitureSpecificInputs() {
   return (
     <>
       <div>
-        <div className="mb-3 row">
+        <div className="row mb-3">
           <label className="col-sm-4 col-form-label" htmlFor="height">Height (CM)</label>
           <div className="col-sm-8">
             <input type="number" className="form-control" id="height" name="height" required />
             <small className="feedback"></small>
           </div>
         </div>
-        <div className="mb-3 row">
+        <div className="row mb-3">
           <label className="col-sm-4 col-form-label" htmlFor="width">Width (CM)</label>
           <div className="col-sm-8">
             <input type="number" className="form-control" id="width" name="width" required />
             <small className="feedback"></small>
           </div>
         </div>
-        <div className="mb-3 row">
+        <div className="row mb-3">
           <label className="col-sm-4 col-form-label" htmlFor="length">Length (CM)</label>
           <div className="col-sm-8">
             <input type="number" className="form-control" id="length" name="length" required />
@@ -207,8 +207,8 @@ function ProductAddPage() {
           <div style={{ display: "flex" }}>
             <h1 style={{ marginBottom: "0" }}>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-              <button className="btn btn-primary m-auto" onClick={handleAddProduct}>Save</button>
-              <Link className="btn btn-secondary m-auto" to="/product/list">Cancel</Link>
+              <button className="btn-save" onClick={handleAddProduct}>Save</button>
+              <Link className="btn-cancel" to="/product/list">Cancel</Link>
             </div>
           </div>
         </nav>

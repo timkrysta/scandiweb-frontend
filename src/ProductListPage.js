@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-import 'bootstrap/dist/css/bootstrap.css';
+import './styles/style.scss';
 import API_ENDPOINTS from './config';
 
 function ProductListPage() {
@@ -51,12 +51,12 @@ function ProductListPage() {
 
     return (
       <div className="col">
-        <label className="d-block h-100">
-          <div className="card h-100 p-2">
+        <label style={{ display: "block", height: "100%" }}>
+          <div className="card" style={{ padding: ".5rem", height: "100%" }}>
             <div>
               <div className="form-check">
                 <input 
-                  className="form-check-input delete-checkbox" 
+                  className="delete-checkbox form-check-input" 
                   type="checkbox" 
                   name="ids[]"
                   value={product.id}
@@ -102,8 +102,8 @@ function ProductListPage() {
           <div style={{ display: 'flex' }}>
             <h1 style={{ marginBottom: "0" }}>Product List</h1>
             <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
-              <Link to="/product/add" className="btn btn-primary m-auto">ADD</Link>
-              <button onClick={handleMassDelete} className="btn btn-danger m-auto">MASS DELETE</button>
+              <Link to="/product/add" className="btn-add">ADD</Link>
+              <button onClick={handleMassDelete} className="btn-mass-delete">MASS DELETE</button>
             </div>
           </div>
         </nav>
