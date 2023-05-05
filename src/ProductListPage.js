@@ -98,9 +98,9 @@ function ProductListPage() {
   return (
     <div>
       <header className="container">
-        <nav>
+        <nav style={{ marginTop: "1rem" }}>
           <div style={{ display: 'flex' }}>
-            <h1>Product List</h1>
+            <h1 style={{ marginBottom: "0" }}>Product List</h1>
             <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
               <Link to="/product/add" className="btn btn-primary m-auto">ADD</Link>
               <button onClick={handleMassDelete} className="btn btn-danger m-auto">MASS DELETE</button>

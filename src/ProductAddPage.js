@@ -203,9 +203,9 @@ function ProductAddPage() {
   return (
     <div>
       <header className="container">
-        <nav>
+        <nav style={{ marginTop: "1rem" }}>
           <div style={{ display: "flex" }}>
-            <h1>Product Add</h1>
+            <h1 style={{ marginBottom: "0" }}>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
               <button className="btn btn-primary m-auto" onClick={handleAddProduct}>Save</button>
               <Link className="btn btn-secondary m-auto" to="/product/list">Cancel</Link>
