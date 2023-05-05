@@ -1,6 +1,6 @@
 import ProductAddFormBaseInputs from './ProductAddFormBaseInputs';
 import ProductAddFormAdditionalInputs from './ProductAddFormAdditionalInputs';
-import API_ENDPOINTS from '../../config';
+import API_ENDPOINTS from '../../../config';
 
 function ProductAddForm({ productType, handleProductTypeChange }) {
   return (

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import '../styles/style.scss';
 import Footer from '../components/Footer';
-import ProductAddForm from '../components/ProductAddForm/ProductAddForm';
+import ProductAddForm from '../components/ProductAddPage/ProductAddForm/ProductAddForm';
 
 
 function ProductAddPage() {
