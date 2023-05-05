@@ -8,7 +8,7 @@ function ProductListPage() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    async function fetchProducts() {
+    const fetchProducts = async () => {
       try {
         const response = await fetch(API_ENDPOINTS.product.get);
         const data = await response.json();
@@ -17,70 +17,53 @@ function ProductListPage() {
         console.error('Error fetching products:', error);
         setProducts([]);
       }
-    }
+    };
 
     fetchProducts();
   }, []);
 
-  function ProductList() {
-
-    return (
-      <div>
-        <form className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4" action={API_ENDPOINTS.product.bulkDelete} id="massDeleteForm" method="POST">
-          {products.length > 0
-            ? products.map(product => <Product key={product.id} product={product} />)
-            : ''}
-        </form>
-      </div>
-    )
-  }
-
-  function Product({ product, setSelectedProductIds }) {
-
-    return (
-      <div className="col">
-        <label style={{ display: "block", height: "100%" }}>
-          <div className="card" style={{ padding: ".5rem", height: "100%" }}>
-            <div>
-              <div className="form-check">
-                <input 
-                  className="delete-checkbox form-check-input" 
-                  type="checkbox" 
-                  name="ids[]"
-                  value={product.id}
-                />
-              </div>
+  const Product = ({ product }) => (
+    <div className="col">
+      <label style={{ display: "block", height: "100%" }}>
+        <div className="card" style={{ padding: ".5rem", height: "100%" }}>
+          <div>
+            <div className="form-check">
+              <input
+                className="delete-checkbox form-check-input"
+                type="checkbox"
+                name="ids[]"
+                value={product.id}
+              />
             </div>
-            <div className="card-body" style={{ userSelect: "none" }}>
-              <div style={{ textAlign: "center" }}>
-                <div>{product.sku}</div>
-                <div>{product.name}</div>
-                <div>{product.price}</div>
-                <div>
-                  {product.height} {product.width} {product.length}
-                </div>
+          </div>
+          <div className="card-body" style={{ userSelect: "none" }}>
+            <div style={{ textAlign: "center" }}>
+              <div>{product.sku}</div>
+              <div>{product.name}</div>
+              <div>{product.price}</div>
+              <div>
+                {product.height} {product.width} {product.length}
               </div>
             </div>
           </div>
-        </label>
-      </div>
-    );
-  }
+        </div>
+      </label>
+    </div>
+  );
 
   const handleMassDelete = async () => {
     const form = document.getElementById('massDeleteForm');
-  
+
     try {
       await fetch(form.action, {
         method: form.method,
-        body: new FormData(form)
+        body: new FormData(form),
       });
       window.location.reload();
     } catch (error) {
       console.error('Error deleting products:', error);
     }
   };
-  
 
   return (
     <div>
@@ -97,7 +80,22 @@ function ProductListPage() {
         <hr />
       </header>
       <main className="container">
-        <ProductList />
+        <div>
+          <form
+            className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4"
+            action={API_ENDPOINTS.product.bulkDelete}
+            id="massDeleteForm"
+            method="POST"
+          >
+            {products.length > 0 ? (
+              products.map((product) => (
+                <Product key={product.id} product={product} />
+              ))
+            ) : (
+              <p>No products found.</p>
+            )}
+          </form>
+        </div>
       </main>
       <Footer />
     </div>
