@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
-import './styles/style.scss';
-import API_ENDPOINTS from './config';
+import Footer from '../components/Footer';
+import '../styles/style.scss';
+import API_ENDPOINTS from '../config';
 
 function ProductListPage() {
   const [products, setProducts] = useState([]);
