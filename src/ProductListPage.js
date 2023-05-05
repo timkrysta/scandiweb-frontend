@@ -53,17 +53,19 @@ function ProductListPage() {
     return (
       <div className="col">
         <label className="d-block h-100">
-          <div className="card h-100">
+          <div className="card h-100 p-2">
             <div>
-              <input
-                type="checkbox"
-                className="delete-checkbox"
-                name="ids[]"
-                value={product.id}
-                onChange={handleCheckboxChange}
-              />
+              <div class="form-check">
+                <input 
+                  class="form-check-input delete-checkbox" 
+                  type="checkbox" 
+                  name="ids[]"
+                  value={product.id}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
             </div>
-            <div className="card-body">
+            <div className="card-body" style={{ userSelect: "none" }}>
               <div style={{ textAlign: "center" }}>
                 <div>{product.sku}</div>
                 <div>{product.name}</div>
