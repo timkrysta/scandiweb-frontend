@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import API_ENDPOINTS from '../config';
 import Product from '../components/ProductListPage/Product';
@@ -41,18 +42,13 @@ function ProductListPage() {
 
   return (
     <div>
-      <header className="container">
-        <nav style={{ marginTop: "1rem" }}>
-          <div style={{ display: 'flex' }}>
-            <h1 style={{ marginBottom: "0" }}>Product List</h1>
-            <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
-              <Link to="/product/add" className="btn-add">ADD</Link>
-              <button onClick={handleMassDelete} className="btn-mass-delete">MASS DELETE</button>
-            </div>
-          </div>
-        </nav>
-        <hr />
-      </header>
+      <Header 
+        heading="Product List"
+        navigation={<>
+          <Link to="/product/add" className="btn-add">ADD</Link>
+          <button onClick={handleMassDelete} className="btn-mass-delete">MASS DELETE</button>
+        </>}
+      />
       <main className="container">
         <div>
           <form

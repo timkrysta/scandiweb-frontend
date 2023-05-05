@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/style.scss';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductAddForm from '../components/ProductAddPage/ProductAddForm/ProductAddForm';
+import '../styles/style.scss';
 
 
 function ProductAddPage() {
@@ -17,7 +18,7 @@ function ProductAddPage() {
     html += '</ul>';
     return html;
   };
-  
+
   const showError = (input, message) => { // TODO(tim): throw exception if input does not exist or if small.feedback does not exist
     const formField = input.parentElement;
     formField.classList.remove('is-valid');
@@ -27,12 +28,12 @@ function ProductAddPage() {
     const feedback = Array.isArray(message) ? createItemList(message) : message;
     error.innerHTML = feedback;
   };
-  
+
   const clearValidationMessages = () => {
     const validationMessages = document.querySelectorAll('.validation-message');
     validationMessages.forEach((message) => (message.innerHTML = ''));
   };
-  
+
 
   const handleProductFormSubmit = async () => {
     const form = document.getElementById('product_form');
@@ -67,18 +68,13 @@ function ProductAddPage() {
 
   return (
     <div>
-      <header className="container">
-        <nav style={{ marginTop: "1rem" }}>
-          <div style={{ display: "flex" }}>
-            <h1 style={{ marginBottom: "0" }}>Product Add</h1>
-            <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-              <button className="btn-save" onClick={handleProductFormSubmit}>Save</button>
-              <Link className="btn-cancel" to="/product/list">Cancel</Link>
-            </div>
-          </div>
-        </nav>
-        <hr />
-      </header>
+      <Header 
+        heading="Product Add" 
+        navigation={<>
+          <button className="btn-save" onClick={handleProductFormSubmit}>Save</button>
+          <Link className="btn-cancel" to="/product/list">Cancel</Link>
+        </>}
+      />
       <main className="container">
         <ProductAddForm
           handleProductTypeChange={handleProductTypeChange}
