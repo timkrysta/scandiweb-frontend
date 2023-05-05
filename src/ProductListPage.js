@@ -2,15 +2,15 @@ import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
+import API_ENDPOINTS from './config';
 
 function ProductListPage() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchProducts() {
-      const getApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/get.php';
       try {
-        const response = await fetch(getApiEndpoint);
+        const response = await fetch(API_ENDPOINTS.product.get);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -24,11 +24,10 @@ function ProductListPage() {
 
   function ProductList() {
     const [selectedProductIds, setSelectedProductIds] = useState([]);
-    const massDeleteApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/bulkDelete.php';
 
     return (
       <div>
-        <form className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4" action={massDeleteApiEndpoint} id="massDeleteForm" method="POST">
+        <form className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4" action={API_ENDPOINTS.product.bulkDelete} id="massDeleteForm" method="POST">
           {products.length > 0
             ? products.map(product => <Product key={product.id} product={product} setSelectedProductIds={setSelectedProductIds} />)
             : ''}

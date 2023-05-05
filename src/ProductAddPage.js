@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
+import API_ENDPOINTS from './config';
 
 function createItemList(items) {
   let html = '<ul>';
@@ -38,9 +39,8 @@ const clearAllErrorMessages = () => {
 };
 
 function ProductAddForm({ productType, handleProductTypeChange }) {
-  const addProductApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/saveApi.php';
   return (
-    <form action={addProductApiEndpoint} method="POST" id="product_form">
+    <form action={API_ENDPOINTS.product.saveApi} method="POST" id="product_form">
       <div className="row">
         <div className="col-12 col-md-6 col-xl-4">
           <ProductAddFormBaseInputs productType={productType} handleProductTypeChange={handleProductTypeChange} />
