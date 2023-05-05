@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import API_ENDPOINTS from '../config';
 import Product from '../components/ProductListPage/Product';
+import API_ENDPOINTS from '../config';
 import '../styles/style.scss';
 
 function ProductListPage() {
@@ -17,7 +17,6 @@ function ProductListPage() {
         const data = await response.json();
         setProducts(data);
       } catch (error) {
-        console.error('Error fetching products:', error);
         setProducts([]);
       }
     };
@@ -35,9 +34,7 @@ function ProductListPage() {
         body: new FormData(form),
       });
       window.location.reload();
-    } catch (error) {
-      console.error('Error deleting products:', error);
-    }
+    } catch (error) {}
   };
 
   return (

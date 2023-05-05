@@ -4,7 +4,6 @@ const API_ENDPOINTS = {
     get:        'http://localhost/web-developer-test-assignment/api/product/get.php',
     bulkDelete: 'http://localhost/web-developer-test-assignment/api/product/bulkDelete.php',
   }
-  // Add more API endpoints here
 };
 
 export default API_ENDPOINTS;

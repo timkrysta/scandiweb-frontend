@@ -56,10 +56,7 @@ function ProductAddPage() {
           }
         }
       }
-      console.log('Response from server:', data);
-    } catch (error) {
-      console.error('Error deleting products:', error);
-    }
+    } catch (error) {}
   };
 
   const handleProductTypeChange = (event) => {
