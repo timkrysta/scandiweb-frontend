@@ -27,7 +27,7 @@ function ProductListPage() {
     const massDeleteApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/bulkDelete.php';
 
     return (
-      <div className="container">
+      <div>
         <form className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4" action={massDeleteApiEndpoint} id="massDeleteForm" method="POST">
           {products.length > 0
             ? products.map(product => <Product key={product.id} product={product} setSelectedProductIds={setSelectedProductIds} />)
@@ -53,17 +53,19 @@ function ProductListPage() {
     return (
       <div className="col">
         <label className="d-block h-100">
-          <div className="card h-100">
+          <div className="card h-100 p-2">
             <div>
-              <input
-                type="checkbox"
-                className="delete-checkbox"
-                name="ids[]"
-                value={product.id}
-                onChange={handleCheckboxChange}
-              />
+              <div class="form-check">
+                <input 
+                  class="form-check-input delete-checkbox" 
+                  type="checkbox" 
+                  name="ids[]"
+                  value={product.id}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
             </div>
-            <div className="card-body">
+            <div className="card-body" style={{ userSelect: "none" }}>
               <div style={{ textAlign: "center" }}>
                 <div>{product.sku}</div>
                 <div>{product.name}</div>
@@ -95,20 +97,20 @@ function ProductListPage() {
   
 
   return (
-    <div >
-      <header>
+    <div>
+      <header className="container">
         <nav>
           <div style={{ display: 'flex' }}>
             <h1>Product List</h1>
             <div style={{ display: 'flex', gap: '.25rem', marginLeft: 'auto' }}>
-              <Link className="btn btn-primary m-auto" to="/product/add">ADD</Link>
-              <button className="btn btn-danger m-auto" onClick={handleMassDelete}>MASS DELETE</button>
+              <Link to="/product/add" className="btn btn-primary m-auto">ADD</Link>
+              <button onClick={handleMassDelete} className="btn btn-danger m-auto">MASS DELETE</button>
             </div>
           </div>
         </nav>
         <hr />
       </header>
-      <main>
+      <main className="container">
         <ProductList />
       </main>
       <Footer />

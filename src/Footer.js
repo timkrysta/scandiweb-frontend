@@ -1,8 +1,15 @@
 
 function Footer() {
   return (
-    <footer style={{ display: "flex", justifyContent: "center" }}>
-      Scandiweb Test assignment
+    <footer style={{ /* position: "fixed", bottom: "0", */ width: "100%", backgroundColor: "#fff" }}>
+      <div className="container">
+        <hr />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <strong>
+            Scandiweb Test assignment
+          </strong>
+        </div>
+      </div>
     </footer>
   );
 }

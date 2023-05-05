@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function ProductAddPage() {
+  const [productType, setProductType] = useState('');
 
   const handleAddProduct = async () => {
-    const form = document.getElementById('addProductForm');
+    const form = document.getElementById('product_form');
   
     try {
       const response = await fetch(form.action, {
@@ -21,46 +23,56 @@ function ProductAddPage() {
       console.error('Error deleting products:', error);
     }
   };
-  
+
+  const handleProductTypeChange = (event) => {
+    setProductType(event.target.value);
+  }
 
   function ProductAddForm() {
     const addProductApiEndpoint = 'http://localhost/web-developer-test-assignment/api/product/saveApi.php';
     return (
-      <form action={addProductApiEndpoint} method="POST" id="addProductForm">
-        <ProductAddFormBaseInputs />
-        <ProductAddFormAdditionalInputs />
+      <form action={addProductApiEndpoint} method="POST" id="product_form">
+        <div className="row">
+          <div className="col-12 col-md-6 col-xl-4">
+            <ProductAddFormBaseInputs handleProductTypeChange={handleProductTypeChange} />
+            <ProductAddFormAdditionalInputs />
+          </div>
+        </div>
       </form>
     );
   }
 
-  function ProductAddFormBaseInputs() {
+  function ProductAddFormBaseInputs({ handleProductTypeChange }) {
     return (
       <>
         <div className="mb-3 row">
-          <label className="col-sm-2 col-form-label">SKU</label>
-          <div className="col-sm-10">
-            <input type="text" className="form-control" name="sku"/>
+          <label className="col-sm-4 col-form-label" htmlFor="sku">SKU</label>
+          <div className="col-sm-8">
+            <input type="text" className="form-control" id="sku" name="sku"/>
           </div>
         </div>
         <div className="mb-3 row">
-          <label className="col-sm-2 col-form-label">Name</label>
-          <div className="col-sm-10">
-            <input type="text" className="form-control" name="name"/>
+          <label className="col-sm-4 col-form-label" htmlFor="name">Name</label>
+          <div className="col-sm-8">
+            <input type="text" className="form-control" id="name" name="name"/>
           </div>
         </div>
         <div className="mb-3 row">
-          <label className="col-sm-2 col-form-label">Price ($)</label>
-          <div className="col-sm-10">
-            <input type="number" className="form-control" name="price"/>
+          <label className="col-sm-4 col-form-label" htmlFor="price">Price ($)</label>
+          <div className="col-sm-8">
+            <input type="number" /* step="0.01" */ className="form-control" id="price" name="price"/>
           </div>
         </div>
         <div className="mb-3 row">
-          <label htmlFor="productType">Product Type</label>
-          <select id="productType" name="productType" className="form-select">
-            <option value="dvd">DVD</option>
-            <option value="book">Book</option>
-            <option value="furniture">Furniture</option>
-          </select>
+          <label className="col-sm-4 col-form-label" htmlFor="productType">Type Switcher</label>
+          <div className="col-sm-8">
+            <select id="productType" name="productType" className="form-select" onChange={handleProductTypeChange}>
+              <option value=""          selected={productType === ''}         >Type Switcher</option>
+              <option value="dvd"       selected={productType === 'dvd'}      >DVD</option>
+              <option value="book"      selected={productType === 'book'}     >Book</option>
+              <option value="furniture" selected={productType === 'furniture'}>Furniture</option>
+            </select>
+          </div>
         </div>
       </>
     );
@@ -69,9 +81,9 @@ function ProductAddPage() {
   function ProductAddFormAdditionalInputs() {
     return (
       <>
-        <BookSpecificInputs />
-        <DvdSpecificInputs />
-        <FurnitureSpecificInputs />
+        {productType === 'book'      && <BookSpecificInputs />}
+        {productType === 'dvd'       && <DvdSpecificInputs />}
+        {productType === 'furniture' && <FurnitureSpecificInputs />}
       </>
     );
   }
@@ -79,15 +91,14 @@ function ProductAddPage() {
   function BookSpecificInputs() {
     return (
       <>
-
         <div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Weight (KG)</label>
-            <div className="col-sm-10">
-              <input type="number" className="form-control" name="weight"/>
+            <label className="col-sm-4 col-form-label" htmlFor="weight">Weight (KG)</label>
+            <div className="col-sm-8">
+              <input type="number" className="form-control" id="weight" name="weight"/>
             </div>
           </div>
-          <p>Please provide a weight in kilograms (KG).</p>
+          <p>Please, provide the weight in kilograms (KG).</p>
         </div>
       </>
     );
@@ -96,15 +107,14 @@ function ProductAddPage() {
   function DvdSpecificInputs() {
     return (
       <>
-
         <div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Size (MB)</label>
-            <div className="col-sm-10">
-              <input type="number" className="form-control" name="size"/>
+            <label className="col-sm-4 col-form-label" htmlFor="size">Size (MB)</label>
+            <div className="col-sm-8">
+              <input type="number" className="form-control" id="size" name="size"/>
             </div>
           </div>
-          <p>Please provide a size in megabyte (MB).</p>
+          <p>Please, provide the size in megabytes (MB).</p>
         </div>
       </>
     );
@@ -115,24 +125,24 @@ function ProductAddPage() {
       <>
         <div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Height (CM)</label>
-            <div className="col-sm-10">
-              <input type="number" className="form-control" name="height"/>
+            <label className="col-sm-4 col-form-label" htmlFor="height">Height (CM)</label>
+            <div className="col-sm-8">
+              <input type="number" className="form-control" id="height" name="height"/>
             </div>
           </div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Width (CM)</label>
-            <div className="col-sm-10">
-              <input type="number" className="form-control" name="width"/>
+            <label className="col-sm-4 col-form-label" htmlFor="width">Width (CM)</label>
+            <div className="col-sm-8">
+              <input type="number" className="form-control" id="width" name="width"/>
             </div>
           </div>
           <div className="mb-3 row">
-            <label className="col-sm-2 col-form-label">Length (CM)</label>
-            <div className="col-sm-10">
-              <input type="number" className="form-control" name="length"/>
+            <label className="col-sm-4 col-form-label" htmlFor="length">Length (CM)</label>
+            <div className="col-sm-8">
+              <input type="number" className="form-control" id="length" name="length"/>
             </div>
           </div>
-          <p>Please provide dimensions in HxWxL (height/width/length) format.</p>
+          <p>Please, provide dimensions in HxWxL (height/width/length) format.</p>
         </div>
       </>
     );
@@ -140,20 +150,20 @@ function ProductAddPage() {
 
 
   return (
-    <div className="">
-      <header>
+    <div>
+      <header className="container">
         <nav>
           <div style={{ display: "flex" }}>
             <h1>Product Add</h1>
             <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-              <Link className="btn btn-secondary m-auto" to="/product/list">CANCEL</Link>
-              <button className="btn btn-primary m-auto" onClick={handleAddProduct}>SAVE</button>
+              <button className="btn btn-primary m-auto" onClick={handleAddProduct}>Save</button>
+              <Link className="btn btn-secondary m-auto" to="/product/list">Cancel</Link>
             </div>
           </div>
         </nav>
         <hr />
       </header>
-      <main>
+      <main className="container">
         <ProductAddForm />
       </main>
       <Footer />
