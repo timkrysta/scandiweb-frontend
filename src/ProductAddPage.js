@@ -4,17 +4,15 @@ import Footer from './Footer';
 import './styles/style.scss';
 import API_ENDPOINTS from './config';
 
-function createItemList(items) {
-  let html = '<ul>';
-
-  for (let i = 0; i < items.length; i++) {
-    html += '<li>' + items[i] + '</li>';
-  }
-
-  html += '</ul>';
-  return html;
-}
-
+const createItemList = (items) => {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  );
+};
 
 const showError = (input, message) => { // TODO(tim): throw exception if input does not exist or if small.feedback does not exist
   const formField = input.parentElement;
@@ -22,18 +20,13 @@ const showError = (input, message) => { // TODO(tim): throw exception if input d
   formField.classList.add('is-invalid');
   const error = formField.parentElement.querySelector('.validation-message');
   error.style.color = '#fd5c70';
-  let feedback = '';
-  if (Array.isArray(message)) {
-    feedback = createItemList(message);
-  } else {
-    feedback = message;
-  }
+  const feedback = Array.isArray(message) ? createItemList(message) : message;
   error.innerHTML = feedback;
 };
 
 const clearValidationMessages = () => {
-  const validationMessage = document.querySelectorAll('.validation-message');
-  validationMessage.forEach(validationMessage => validationMessage.innerHTML = '');
+  const validationMessages = document.querySelectorAll('.validation-message');
+  validationMessages.forEach((message) => (message.innerHTML = ''));
 };
 
 function ProductAddForm({ productType, handleProductTypeChange }) {
@@ -69,7 +62,7 @@ function ProductAddFormBaseInputs({ productType, handleProductTypeChange }) {
       <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="price">Price ($)</label>
         <div className="col-sm-8">
-          <input type="number" /* step="0.01" */ className="form-control" id="price" name="price" required />
+          <input type="number" step="0.01" className="form-control" id="price" name="price" required />
           <div className="validation-message"></div>
         </div>
       </div>
@@ -176,11 +169,15 @@ function ProductAddPage() {
       else {
         clearValidationMessages();
         const errors = data.error;
-        for (let key in errors) {
+        /* for (let key in errors) {
           if (errors.hasOwnProperty(key)) {
             showError(document.getElementById(key), errors[key]);
           }
-        }
+        } */
+        // TODO(tim):
+        Object.entries(errors).forEach(([key, value]) => {
+          showError(document.getElementById(key), value);
+        });
       }
       console.log('Response from server:', data);
     } catch (error) {
