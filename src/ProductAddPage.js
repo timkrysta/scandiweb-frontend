@@ -20,7 +20,7 @@ const showError = (input, message) => { // TODO(tim): throw exception if input d
   const formField = input.parentElement;
   formField.classList.remove('is-valid');
   formField.classList.add('is-invalid');
-  const error = formField.parentElement.querySelector('small.feedback');
+  const error = formField.parentElement.querySelector('.validation-message');
   error.style.color = '#fd5c70';
   let feedback = '';
   if (Array.isArray(message)) {
@@ -31,18 +31,16 @@ const showError = (input, message) => { // TODO(tim): throw exception if input d
   error.innerHTML = feedback;
 };
 
-const clearAllErrorMessages = () => {
-  const errorPlaceholders = document.querySelectorAll('small.feedback');
-  errorPlaceholders.forEach(element => {
-    element.innerHTML = '';
-  });
+const clearValidationMessages = () => {
+  const validationMessage = document.querySelectorAll('.validation-message');
+  validationMessage.forEach(validationMessage => validationMessage.innerHTML = '');
 };
 
 function ProductAddForm({ productType, handleProductTypeChange }) {
   return (
     <form action={API_ENDPOINTS.product.saveApi} method="POST" id="product_form">
       <div className="row">
-        <div className="col-12 col-md-6 col-xl-4">
+        <div className="col-12 col-md-7 col-xl-5">
           <ProductAddFormBaseInputs productType={productType} handleProductTypeChange={handleProductTypeChange} />
           <ProductAddFormAdditionalInputs productType={productType}/>
         </div>
@@ -58,21 +56,21 @@ function ProductAddFormBaseInputs({ productType, handleProductTypeChange }) {
         <label className="col-sm-4 col-form-label" htmlFor="sku">SKU</label>
         <div className="col-sm-8">
           <input type="text" className="form-control" id="sku" name="sku" required />
-          <small className="feedback"></small>
+          <div className="validation-message"></div>
         </div>
       </div>
       <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="name">Name</label>
         <div className="col-sm-8">
           <input type="text" className="form-control" id="name" name="name" required />
-          <small className="feedback"></small>
+          <div className="validation-message"></div>
         </div>
       </div>
       <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="price">Price ($)</label>
         <div className="col-sm-8">
           <input type="number" /* step="0.01" */ className="form-control" id="price" name="price" required />
-          <small className="feedback"></small>
+          <div className="validation-message"></div>
         </div>
       </div>
       <div className="row mb-3">
@@ -84,7 +82,7 @@ function ProductAddFormBaseInputs({ productType, handleProductTypeChange }) {
             <option value="book">Book</option>
             <option value="furniture">Furniture</option>
           </select>
-          <small className="feedback"></small>
+          <div className="validation-message"></div>
         </div>
       </div>
     </>
@@ -104,16 +102,14 @@ function ProductAddFormAdditionalInputs({ productType }) {
 function BookSpecificInputs() {
   return (
     <>
-      <div>
-        <div className="row mb-3">
-          <label className="col-sm-4 col-form-label" htmlFor="weight">Weight (KG)</label>
-          <div className="col-sm-8">
-            <input type="number" className="form-control" id="weight" name="weight" required />
-            <small className="feedback"></small>
-          </div>
+      <div className="row mb-3">
+        <label className="col-sm-4 col-form-label" htmlFor="weight">Weight (KG)</label>
+        <div className="col-sm-8">
+          <input type="number" className="form-control" id="weight" name="weight" required />
+          <div className="validation-message"></div>
         </div>
-        <p>Please, provide the weight in kilograms (KG).</p>
       </div>
+      <p>Please, provide the weight in kilograms (KG).</p>
     </>
   );
 }
@@ -121,16 +117,14 @@ function BookSpecificInputs() {
 function DvdSpecificInputs() {
   return (
     <>
-      <div>
-        <div className="row mb-3">
-          <label className="col-sm-4 col-form-label" htmlFor="size">Size (MB)</label>
-          <div className="col-sm-8">
-            <input type="number" className="form-control" id="size" name="size" required />
-            <small className="feedback"></small>
-          </div>
+      <div className="row mb-3">
+        <label className="col-sm-4 col-form-label" htmlFor="size">Size (MB)</label>
+        <div className="col-sm-8">
+          <input type="number" className="form-control" id="size" name="size" required />
+          <div className="validation-message"></div>
         </div>
-        <p>Please, provide the size in megabytes (MB).</p>
       </div>
+      <p>Please, provide the size in megabytes (MB).</p>
     </>
   );
 }
@@ -138,30 +132,28 @@ function DvdSpecificInputs() {
 function FurnitureSpecificInputs() {
   return (
     <>
-      <div>
-        <div className="row mb-3">
-          <label className="col-sm-4 col-form-label" htmlFor="height">Height (CM)</label>
-          <div className="col-sm-8">
-            <input type="number" className="form-control" id="height" name="height" required />
-            <small className="feedback"></small>
-          </div>
+      <div className="row mb-3">
+        <label className="col-sm-4 col-form-label" htmlFor="height">Height (CM)</label>
+        <div className="col-sm-8">
+          <input type="number" className="form-control" id="height" name="height" required />
+          <div className="validation-message"></div>
         </div>
-        <div className="row mb-3">
-          <label className="col-sm-4 col-form-label" htmlFor="width">Width (CM)</label>
-          <div className="col-sm-8">
-            <input type="number" className="form-control" id="width" name="width" required />
-            <small className="feedback"></small>
-          </div>
-        </div>
-        <div className="row mb-3">
-          <label className="col-sm-4 col-form-label" htmlFor="length">Length (CM)</label>
-          <div className="col-sm-8">
-            <input type="number" className="form-control" id="length" name="length" required />
-            <small className="feedback"></small>
-          </div>
-        </div>
-        <p>Please, provide dimensions in HxWxL (height/width/length) format.</p>
       </div>
+      <div className="row mb-3">
+        <label className="col-sm-4 col-form-label" htmlFor="width">Width (CM)</label>
+        <div className="col-sm-8">
+          <input type="number" className="form-control" id="width" name="width" required />
+          <div className="validation-message"></div>
+        </div>
+      </div>
+      <div className="row mb-3">
+        <label className="col-sm-4 col-form-label" htmlFor="length">Length (CM)</label>
+        <div className="col-sm-8">
+          <input type="number" className="form-control" id="length" name="length" required />
+          <div className="validation-message"></div>
+        </div>
+      </div>
+      <p>Please, provide dimensions in HxWxL (height/width/length) format.</p>
     </>
   );
 }
@@ -181,8 +173,8 @@ function ProductAddPage() {
       if (response.status === 200) {
         window.location = '/product/list';
       }
-      else if (data.message == 'Validation Failed') {
-        clearAllErrorMessages();
+      else {
+        clearValidationMessages();
         const errors = data.error;
         for (let key in errors) {
           if (errors.hasOwnProperty(key)) {
