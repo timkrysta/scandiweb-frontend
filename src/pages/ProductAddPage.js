@@ -67,13 +67,10 @@ function ProductAddPage() {
 
   return (
     <div>
-      <Header
-        heading="Product Add"
-        navigation={<>
-          <button className="btn-save" onClick={handleProductFormSubmit}>Save</button>
-          <Link className="btn-cancel" to="/product/list">Cancel</Link>
-        </>}
-      />
+      <Header heading="Product Add">
+        <button className="btn-save" onClick={handleProductFormSubmit}>Save</button>
+        <Link className="btn-cancel" to="/product/list">Cancel</Link>
+      </Header>
       <main className="container">
         <ProductAddForm
           handleProductTypeChange={handleProductTypeChange}

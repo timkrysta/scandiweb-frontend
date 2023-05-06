@@ -1,4 +1,4 @@
-function Header({ heading, navigation }) {
+function Header({ heading, children }) {
   return (
     <header className="container">
       <nav style={{ marginTop: "1rem" }}>
@@ -7,7 +7,7 @@ function Header({ heading, navigation }) {
             {heading}
           </h1>
           <div style={{ display: "flex", gap: ".25rem", marginLeft: "auto" }}>
-            {navigation}
+            {children}
           </div>
         </div>
       </nav>

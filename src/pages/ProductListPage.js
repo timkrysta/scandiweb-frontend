@@ -41,13 +41,10 @@ function ProductListPage() {
 
   return (
     <div>
-      <Header
-        heading="Product List"
-        navigation={<>
-          <Link to="/product/add" className="btn-add">ADD</Link>
-          <button onClick={handleMassDelete} className="btn-mass-delete">MASS DELETE</button>
-        </>}
-      />
+      <Header heading="Product List">
+        <Link to="/product/add" className="btn-add">ADD</Link>
+        <button onClick={handleMassDelete} className="btn-mass-delete">MASS DELETE</button>
+      </Header>
       <main className="container">
         <div>
           <form
