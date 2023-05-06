@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import PageContent from '../components/PageContent';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductAddForm from '../components/ProductAddPage/ProductAddForm/ProductAddForm';
@@ -13,7 +14,7 @@ function ProductAddPage() {
   const createItemList = (items) => {
     let html = '<ul>';
     for (let i = 0; i < items.length; i++) {
-      html += '<li>' + items[i] + '</li>';
+      html += `<li>${items[i]}</li>`;
     }
     html += '</ul>';
     return html;
@@ -66,19 +67,23 @@ function ProductAddPage() {
   }
 
   return (
-    <div>
+    <>
       <Header heading="Product Add">
-        <button className="btn-save" onClick={handleProductFormSubmit}>Save</button>
-        <Link className="btn-cancel" to="/product/list">Cancel</Link>
+        <button onClick={handleProductFormSubmit} className="btn-save">
+          Save
+        </button>
+        <Link to="/product/list" className="btn-cancel">
+          Cancel
+        </Link>
       </Header>
-      <main className="container">
+      <PageContent>
         <ProductAddForm
-          handleProductTypeChange={handleProductTypeChange}
           productType={productType}
+          handleProductTypeChange={handleProductTypeChange}
         />
-      </main>
+      </PageContent>
       <Footer />
-    </div>
+    </>
   );
 }
 

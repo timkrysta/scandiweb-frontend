@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import PageContent from '../components/PageContent';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Product from '../components/ProductListPage/Product';
@@ -39,29 +40,37 @@ function ProductListPage() {
     } catch (error) { }
   };
 
+  function ProductList() {
+    return (
+      <form
+          className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4"
+          action={API_ENDPOINTS.product.bulkDelete}
+          id="massDeleteForm"
+          method="POST"
+      >
+        {products.length > 0
+          ? (products.map((product) => (<Product key={product.id} data={product} />)))
+          : (<p>No products found.</p>)
+        }
+      </form>
+    );
+  }
+
   return (
-    <div>
+    <>
       <Header heading="Product List">
-        <Link to="/product/add" className="btn-add">ADD</Link>
-        <button onClick={handleMassDelete} className="btn-mass-delete">MASS DELETE</button>
+        <Link to="/product/add" className="btn-add">
+          ADD
+        </Link>
+        <button onClick={handleMassDelete} className="btn-mass-delete">
+          MASS DELETE
+        </button>
       </Header>
-      <main className="container">
-        <div>
-          <form
-            className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4"
-            action={API_ENDPOINTS.product.bulkDelete}
-            id="massDeleteForm"
-            method="POST"
-          >
-            {products.length > 0
-              ? (products.map((product) => (<Product key={product.id} data={product} />)))
-              : (<p>No products found.</p>)
-            }
-          </form>
-        </div>
-      </main>
+      <PageContent>
+        <ProductList />
+      </PageContent>
       <Footer />
-    </div>
+    </>
   );
 }
 
