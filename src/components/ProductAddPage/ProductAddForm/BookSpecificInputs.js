@@ -4,7 +4,7 @@ function BookSpecificInputs() {
       <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="weight">Weight (KG)</label>
         <div className="col-sm-8">
-          <input type="number" className="form-control" id="weight" name="weight" required />
+          <input type="number" className="form-control" min="1" id="weight" name="weight" required />
           <div className="validation-message"></div>
         </div>
       </div>

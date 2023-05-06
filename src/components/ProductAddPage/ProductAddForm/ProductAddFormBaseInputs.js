@@ -25,7 +25,7 @@ function ProductAddFormBaseInputs({ productType, handleProductTypeChange }) {
       <div className="row mb-3">
         <label className="col-sm-4 col-form-label" htmlFor="price">Price ($)</label>
         <div className="col-sm-8">
-          <input type="number" step="0.01" className="form-control" id="price" name="price" required />
+          <input type="number" step="0.01" min="0.01" className="form-control" id="price" name="price" required />
           <div className="validation-message"></div>
         </div>
       </div>
