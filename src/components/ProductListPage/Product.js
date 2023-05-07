@@ -2,9 +2,15 @@ function Product({ product }) {
   function SpecialAttribute() {
     return (
       <>
-        {product.weight !== null ? `Weight: ${product.weight} KG` : ''}
-        {product.size !== null ? `Size: ${product.size} MB` : ''}
-        {product.height !== null && product.width !== null && product.length !== null ? `Dimensions: ${product.height}x${product.width}x${product.length}` : ''}
+        {product.weight !== null 
+          ? `Weight: ${product.weight} KG` 
+          : ''}
+        {product.size !== null 
+          ? `Size: ${product.size} MB` 
+          : ''}
+        {product.height !== null && product.width !== null && product.length !== null 
+          ? `Dimensions: ${product.height}x${product.width}x${product.length}` 
+          : ''}
       </>
     );
   }
