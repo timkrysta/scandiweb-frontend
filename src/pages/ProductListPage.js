@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import PageContent from '../components/PageContent';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Product from '../components/ProductListPage/Product';
-import API_ENDPOINTS from '../config';
+import ProductList from '../components/ProductListPage/ProductList';
+import { PRODUCT_API_ENDPOINTS } from '../config';
 import '../styles/style.scss';
 
 function ProductListPage() {
@@ -14,7 +14,7 @@ function ProductListPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(API_ENDPOINTS.product.get);
+        const response = await fetch(PRODUCT_API_ENDPOINTS.getProducts);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -24,7 +24,6 @@ function ProductListPage() {
 
     fetchProducts();
   }, []);
-
 
   const handleMassDelete = async () => {
     const form = document.getElementById('massDeleteForm');
@@ -37,24 +36,10 @@ function ProductListPage() {
       if (response.status === 200) {
         window.location.reload();
       }
-    } catch (error) { }
+    } catch (error) {
+      // Handle error
+    }
   };
-
-  function ProductList() {
-    return (
-      <form
-          className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4"
-          action={API_ENDPOINTS.product.bulkDelete}
-          id="massDeleteForm"
-          method="POST"
-      >
-        {products.length > 0
-          ? (products.map((product) => (<Product key={product.id} data={product} />)))
-          : (<p>No products found.</p>)
-        }
-      </form>
-    );
-  }
 
   return (
     <>
@@ -67,7 +52,7 @@ function ProductListPage() {
         </button>
       </Header>
       <PageContent>
-        <ProductList />
+        <ProductList products={products} />
       </PageContent>
       <Footer />
     </>
