@@ -1,10 +1,10 @@
-function Product({ data }) {
+function Product({ product }) {
   function SpecialAttribute() {
     return (
       <>
-        {data.weight !== null ? `Weight: ${data.weight} KG` : ''}
-        {data.size !== null ? `Size: ${data.size} MB` : ''}
-        {data.height !== null && data.width !== null && data.length !== null ? `Dimensions: ${data.height}x${data.width}x${data.length}` : ''}
+        {product.weight !== null ? `Weight: ${product.weight} KG` : ''}
+        {product.size !== null ? `Size: ${product.size} MB` : ''}
+        {product.height !== null && product.width !== null && product.length !== null ? `Dimensions: ${product.height}x${product.width}x${product.length}` : ''}
       </>
     );
   }
@@ -18,15 +18,15 @@ function Product({ data }) {
                 className="delete-checkbox form-check-input"
                 type="checkbox"
                 name="ids[]"
-                value={data.id}
+                value={product.id}
               />
             </div>
           </div>
           <div className="card-body" style={{ userSelect: "none" }}>
             <div style={{ textAlign: "center" }}>
-              <div>{data.sku}</div>
-              <div>{data.name}</div>
-              <div>{data.price} $</div>
+              <div>{product.sku}</div>
+              <div>{product.name}</div>
+              <div>{product.price} $</div>
               <div><SpecialAttribute /></div>
             </div>
           </div>
