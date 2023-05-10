@@ -36,9 +36,7 @@ function ProductListPage() {
       if (response.status === 200) {
         window.location.reload();
       }
-    } catch (error) {
-      // Handle error
-    }
+    } catch (error) { }
   };
 
   return (
