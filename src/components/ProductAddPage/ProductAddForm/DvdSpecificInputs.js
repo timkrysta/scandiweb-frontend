@@ -10,7 +10,7 @@ function DvdSpecificInputs() {
           <div className="validation-message"></div>
         </div>
       </div>
-      <p>Please, provide the size in megabytes (MB).</p>
+      <p>Please, provide the size in megabytes.</p>
     </>
   );
 }

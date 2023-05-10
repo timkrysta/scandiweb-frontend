@@ -28,7 +28,7 @@ function FurnitureSpecificInputs() {
           <div className="validation-message"></div>
         </div>
       </div>
-      <p>Please, provide dimensions in HxWxL (height/width/length) format.</p>
+      <p>Please, provide dimensions in HxWxL format.</p>
     </>
   );
 }

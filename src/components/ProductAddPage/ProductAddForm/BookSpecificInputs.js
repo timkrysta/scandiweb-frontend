@@ -10,7 +10,7 @@ function BookSpecificInputs() {
           <div className="validation-message"></div>
         </div>
       </div>
-      <p>Please, provide the weight in kilograms (KG).</p>
+      <p>Please, provide the weight in kilograms.</p>
     </>
   );
 }
