@@ -1,5 +1,7 @@
+const API_HOST = 'http://localhost:8080';
+
 export const PRODUCT_API_ENDPOINTS = {
-  storeProduct:       'http://localhost/web-developer-test-assignment/api/product/saveApi.php',
-  getProducts:        'http://localhost/web-developer-test-assignment/api/product/get.php',
-  bulkDeleteProducts: 'http://localhost/web-developer-test-assignment/api/product/bulkDelete.php',
+  storeProduct:       API_HOST + '/api/product/saveApi.php',
+  getProducts:        API_HOST + '/api/product/get.php',
+  bulkDeleteProducts: API_HOST + '/api/product/bulkDelete.php',
 };
