@@ -12,7 +12,9 @@ function ProductList({ products }) {
       {products.length > 0 ? (
         products.map((product) => <Product key={product.id} product={product} />)
       ) : (
-        {/* <p>No products found. Try adding a new one!</p> */}
+        <>
+          {/* <p>No products found. Try adding a new one!</p> */}
+        </>
       )}
     </form>
   );
