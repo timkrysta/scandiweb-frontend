@@ -1,5 +1,10 @@
 # Scandiweb - Recruitment Task - Frontend
 
+## Demo
+[scandiweb.justeuro.eu](https://scandiweb.justeuro.eu:8080)
+
+<br>
+
 ## Introduction
 - The frontend was developed using React as a SPA (Single Page Application). 
 - All pages are responsive and adjusted for mobile and desktop devices. 
@@ -9,13 +14,13 @@
 
 ## Pages
 
-### 1. Product List Page
-The Product List page is where all products are listed. The page is located in the following URL: `<base_url>/product/list.`
+### 1. Product List Page - `<base_url>/product/list`
+Page that lists all products. 
 
-### 2. Product Add Page
-The Product Add page is where new products can be added to the list. The page is located in the following URL: `<base_url>/product/add`.
+### 2. Product Add Page - `<base_url>/product/add`
+Page with dynamically generated form where an user can enter details of a new product, such as SKU, Name, Price, and the product type.
 
-The page includes a form where the user can enter the details of the new product, such as SKU, Name, Price, and the product type. Depending on the product type selected, the user must enter different information:
+Depending on the product type selected, the user must enter different information:
 - For DVD-disc: Size (in MB)
 - For Book: Weight (in Kg)
 - For Furniture: Dimensions (HxWxL)
@@ -26,10 +31,15 @@ The page includes a form where the user can enter the details of the new product
 To run the frontend, follow these steps:
 
 1. Clone the repository.
-2. Navigate to the project directory in your terminal.
+2. Navigate to the project directory.
 3. Run `npm install` to install the project dependencies.
 4. Run `npm start` to start the development server.
 5. Open your web browser and navigate to http://localhost:3000
+
+<br>
+
+## Author
+[Tymoteusz Krysta](https://www.linkedin.com/in/tim-krysta/) - krystatymoteusz@gmail.com
 
 <br>
 
