@@ -8,6 +8,8 @@ import ProductAddForm from '../components/ProductAddPage/ProductAddForm/ProductA
 import '../styles/style.scss';
 
 function ProductAddPage() {
+  const title = 'Product Add';
+  document.title = title;
   const [productType, setProductType] = useState('');
 
   const handleProductTypeChange = (event) => {

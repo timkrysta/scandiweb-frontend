@@ -9,6 +9,8 @@ import { PRODUCT_API_ENDPOINTS } from '../config';
 import '../styles/style.scss';
 
 function ProductListPage() {
+  const title = 'Product List';
+  document.title = title;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
