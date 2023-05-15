@@ -1,5 +1,7 @@
 # Scandiweb - Recruitment Task - Frontend
 
+<br>
+
 ## Demo
 [scandiweb.justeuro.eu](https://scandiweb.justeuro.eu:8080)
 
@@ -44,4 +46,4 @@ To run the frontend, follow these steps:
 <br>
 
 ## Final provisions
-- The Backend is located here: [https://github.com/timkrysta/scandiweb-backend](https://github.com/timkrysta/scandiweb-backend)
+The Backend is located here: [https://github.com/timkrysta/scandiweb-backend](https://github.com/timkrysta/scandiweb-backend)
